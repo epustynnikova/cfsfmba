@@ -5,3 +5,6 @@ aenum
 markdown
 pytest
 pre-commit
+pyranges
+pysam
+argparse

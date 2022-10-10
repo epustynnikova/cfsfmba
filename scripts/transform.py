@@ -8,6 +8,8 @@ from typing import Dict, List
 
 from pysam import Fastafile
 
+logging.basicConfig(level=logging.DEBUG)
+
 
 @dataclass(eq=True)
 class InputSNP:

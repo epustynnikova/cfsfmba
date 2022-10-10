@@ -32,7 +32,7 @@ RUN apt-get install -y \
     && apt-get autoclean && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install -U Cython
-RUN pip3 install -U future futures pandas pomegranate pyfaidx pysam
+RUN pip3 install -U future futures pandas pomegranate pyfaidx pysam deflate
 
 # install samtools, bcftools, make /data
 RUN wget https://github.com/samtools/htslib/releases/download/${SAMTOOLSVER}/htslib-${SAMTOOLSVER}.tar.bz2 && \
@@ -64,4 +64,9 @@ RUN adduser --disabled-password --gecos '' docker_user && chsh -s /bin/bash && m
 USER    docker_user
 WORKDIR /home/docker_user
 
+WORKDIR /home/docker_user
+COPY scripts/transform.py ./
+COPY data/FP_SNPs_10k_GB38_twoAllelsFormat.tsv ./
+
+RUN cd ../
 CMD ["bash"]
